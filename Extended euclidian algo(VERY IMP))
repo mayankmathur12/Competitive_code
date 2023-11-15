@@ -1,0 +1,55 @@
+We are given an equation ax + by = c
+a, b and c are intigers
+we need to find values of x and y
+integral values of x and y exist only if gcd(a,b) divides c;
+that means c must be a multiple of gcd(a,b)
+so we can say ax + by = gcd(a,b);
+
+https://www.youtube.com/watch?v=0oP6XLTI2tY&ab_channel=ApnaCollege
+ax + by = gcd(a,b) = gcd(b,a%b) = b(x1) + (a%b)(y1)
+a%b =  a - (a/b)*b
+ax + by = gcd(a,b) = gcd(b,a%b) = b(x1) + (a - (a/b)*b)(y1)
+ax + by = b(x1) + (a - (a/b)*b)(y1)
+ax + by = b(x1) + (a - (a/b)*b)(y1) = a(y1) + b(x1 + (a/b)*y1)
+x = y1
+y = x1 + (a/b)*y1
+
+
+code-------------------------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+class trip{
+    public:
+    int x,y,gcd;
+};
+trip findxy(int a, int b){
+    if(b==0){
+        trip ans;
+        ans.x = 1; ans.y = 0; ans.gcd = a;
+        return ans;
+    }
+    trip smallans = findxy(b,a%b);
+    trip ans;
+    ans.x = smallans.y;
+    ans.y = smallans.x - (a/b)*(smallans.y);
+    ans.gcd = smallans.gcd;
+    return ans;
+}
+int main(){
+    int a,b; cin>>a>>b;
+    trip ans = findxy(a,b);
+    cout<<ans.x<<"*"<<a<<" + "<<ans.y<<"*"<<b<<" = "<<ans.gcd<<endl;
+    return 0;
+}
+------------------------------------------------------------------------------------------------------
+
+
+
+
+example 
+a = 44    b = 12
+gcd :
+44 12  x=-1  y= 4  gcd=4 //we get our answer here
+12  8  x= 1  y=-1  gcd=4
+ 8  4  x= 0  y= 1  gcd=4
+ 4  0  x= 1  y= 0  gcd=4
