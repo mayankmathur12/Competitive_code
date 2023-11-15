@@ -1,0 +1,26 @@
+https://www.youtube.com/watch?v=Jj5RNrRXHNQ&list=PLX0iyO9CrCF37xH1TjkmlHs5VMA5MWjme&index=8&ab_channel=HimanshuSingal
+
+#include<bits/stdc++.h>
+using namespace std;
+int bi(int a, int n){
+    if(n==0)return 1;
+    int cur = bi(a,n/2);
+    if(n&1)return a*cur*cur;
+    return cur*cur;
+}
+int bi_iterative(int a, int n){
+    int res = 1; //if(n==0) // we took this case in the start only;
+    while(n>0){
+        if(n&1)res *= a; //  when n is odd we multiply extra 'a' in answer
+        n >>= 1;         // dividing n by 2
+        a *= a;          // bec i divided n by 2, now doing 'a' square;
+                            // bec 5^2 = 25^1; 
+    }
+    return res;
+}
+int main(){
+    int a,n; cin>>a>>n;
+    cout<<bi(a,n)<<endl;
+    cout<<bi_iterative(a,n)<<endl;
+    return 0;
+}
