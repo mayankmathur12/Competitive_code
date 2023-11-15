@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define m 1000000007
+#define int long long int
+int mod(int a){
+    return (a%m + m)%m;
+}
+int multiplication(int a, int b){
+    return mod(mod(a)*mod(b));
+}
+int fast_power_iterative(int a, int n){
+    int res = 1;
+    while(n>0){
+        if(n&1)res = multiplication(res,a);
+        n >>= 1;
+        a = multiplication(a,a);
+    }
+    return res;
+}
+int32_t main(){
+    int a = 5, n = 3;
+    cout<<fast_power_iterative(a,n)<<endl;
+    return 0;
+}
