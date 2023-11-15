@@ -1,0 +1,56 @@
+ax + by = c
+we have to find value of x and y
+first check if 'c' is a multiple of gcd(a,b). if not then no solution exist for x and y
+if yes then find soln of ax + by = gcd
+then (c/gcd)*(ax + by) = (c/gcd)*gcd;
+
+https://www.youtube.com/watch?v=vsA2YOrfmjs&list=PLX0iyO9CrCF37xH1TjkmlHs5VMA5MWjme&index=11&ab_channel=HimanshuSingal
+
+code------------------------------------------------------------------------------------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+class trip{
+    public:
+    int x,y,gcd;
+};
+int find_gcd(int a, int b){
+    a = abs(a); b = abs(b);
+    if(a==0)return b; if(b==0)return b; if(a==b)return a;
+    if(b>a){a = a^b; b = a^b ; a = a^b;}
+    while(b>0){
+        a = a%b;
+        a = a^b; b = a^b ; a = a^b;
+    }
+    return a;
+}
+trip solve(int a, int b){
+    if(b==0){
+        trip ans;
+        ans.x = 1;
+        ans.y = 0;
+        ans.gcd = a;
+        return ans;
+    }
+    trip smallAns = solve(b,a%b);
+    trip ans;
+    ans.x = smallAns.y;
+    ans.y = smallAns.x - (a/b)*(smallAns.y);
+    ans.gcd = smallAns.gcd;
+    return ans;
+}
+void diophantine_equation(int a, int b, int c){
+    int gcd = find_gcd(a,b);
+    if(c%gcd != 0){
+        cout<<"No value of x and y exist for the given equation."<<endl;
+        return;
+    }
+    trip ans = solve(a,b);
+    cout<<a<<"x"<<ans.x*(c/ans.gcd)<<"  +  "<<b<<"x"<<ans.y*(c/ans.gcd)<<" = "<<c<<endl;
+    return;
+}
+int main(){
+    int a,b,c; cin>>a>>b>>c;
+    diophantine_equation(a,b,c);
+    return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------
