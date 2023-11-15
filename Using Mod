@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define m 1000000007
+#define int long long int
+int mod(int a){
+    return (a%m + m)%m;
+}
+int addition(int a, int b){
+    return mod(mod(a) + mod(b));
+}
+int multiplication(int a, int b){
+    cout<<mod(a)<<" "<<mod(b)<<" "<<mod(a)*mod(b)<<endl;
+    return mod(mod(a)*mod(b));
+}
+int subtraction(int a, int b){
+    return mod(mod(a)-mod(b)+m);
+}
+int32_t main(){
+    int a = 1000000002, b = 1000000003;
+    cout<<addition(a,b)<<endl;
+    cout<<multiplication(a,b)<<endl;
+    cout<<subtraction(a,b)<<endl;
+    return 0;
+}
