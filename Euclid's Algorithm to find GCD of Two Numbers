@@ -1,0 +1,64 @@
+HCF = highest common factor
+GCD = greatest common divisor 
+HCF is also called the Greatest Common Measure (GCM) and Greatest Common Divisor(GCD).
+
+We use Euclidian Algo to find the GCD 
+
+what is Euclidian Algo?       https://www.youtube.com/watch?v=NhVnOHg3UYs&ab_channel=Prof.LatifSajid
+
+Code -> https://www.youtube.com/watch?v=ZcMaExBPNDA&list=PLX0iyO9CrCF37xH1TjkmlHs5VMA5MWjme&index=9&ab_channel=HimanshuSingal
+
+
+// Recursive code --------------------------------------------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+int gcd(int a, int b){      // 'a' will be greater than 'b'
+    if(b == 0)return a;
+    return gcd(b,a%b);
+}
+int find_gcd(int a, int b){
+    a = abs(a);     b = abs(b);
+    if(a==0)return b;
+    if(b==0)return a;
+    if(a==b)return a;
+    if(a>b)return gcd(a,b);
+    return gcd(b,a);
+}
+int main(){
+    int a,b; cin>>a>>b;
+    cout<<find_gcd(a,b);
+    return 0;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Iterative code
+
+int gcd_iterative(int a, int b){
+    a = abs(a);     b = abs(b);
+    if(a==0)return b;
+    if(b==0)return a;
+    if(a==b)return a;
+    if(b>a){ //using XOR to swap
+        a = a^b; b = a^b; a = a^b;
+    }
+    while(b>0){
+        a = a%b;
+        a = a^b; b = a^b; a = a^b;   //swapping 'a' and 'b'
+    }
+    return a;
+}
+int main(){
+    int a,b; cin>>a>>b;
+    cout<<gcd_iterative(a,b)<<endl;
+    cout<<__gcd(a,b)<<endl;
+    return 0;
+}
+
+------------------------------------------------------------------------------------------------------
+// inbuild function  __gcd(a,b)
+
+int main(){
+    int a,b; cin>>a>>b;
+    cout<<__gcd(a,b)<<endl;
+    return 0;
+}
