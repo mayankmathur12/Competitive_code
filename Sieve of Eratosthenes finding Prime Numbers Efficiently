@@ -1,0 +1,26 @@
+https://www.youtube.com/watch?v=p6oEjd-tDPg&list=PLX0iyO9CrCF37xH1TjkmlHs5VMA5MWjme&index=12&ab_channel=HimanshuSingal
+
+#include<bits/stdc++.h>
+using namespace std;
+void Sieve_of_Eratosthenes_finding_Prime_Numbers(int n){
+    vector<bool> ans(n+3,true);
+    ans[0] = ans[1] = false;
+    for(int i=2 ; i*i<=n ; i++){
+        if(ans[i] == false)continue;
+        int temp = i;
+        while(temp<=n){
+            temp +=i;
+            ans[temp] = false;
+        }
+    }
+    for(int i=2 ; i<=n ; i++){
+        if(ans[i]==true){cout<<i<<" ";}
+    }
+    cout<<"hir"<<endl;
+}
+int main(){
+    int n; cin>>n;
+    Sieve_of_Eratosthenes_finding_Prime_Numbers(n);
+    cout<<"hi"<<endl;
+    return 0;
+}
