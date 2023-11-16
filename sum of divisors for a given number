@@ -1,0 +1,33 @@
+https://www.youtube.com/watch?v=QDYtsfv_Kxc&list=PLX0iyO9CrCF37xH1TjkmlHs5VMA5MWjme&index=15&ab_channel=HimanshuSingal
+
+#include<bits/stdc++.h>
+using namespace std;
+map<int,int> mp;
+void numberOfDivisors(int n){
+    for(int i=2 ; i*i <= n ; i++){
+        while(n%i == 0){
+            //cout<<n<<" before "<<i<<endl;
+            n = n/i;
+            mp[i]+=1;
+            //cout<<n<<" after "<<i<<endl;
+        }
+    }
+    if(n!=1)mp[n]+=1;
+    for(auto it=mp.begin() ; it!=mp.end() ; it++){
+        cout<<"("<<it->first<<"^"<<it->second<<")"<<" ";
+    }
+    cout<<endl;
+}
+int sumOfDivisors(int n){
+    numberOfDivisors(n);
+    int ans = 1;
+    for(auto it = mp.begin() ; it!=mp.end() ; it++){
+        ans = ans*(it->second+1);
+    }
+    return ans;
+}
+int main(){
+    int n; cin>>n;
+    cout<<sumOfDivisors(n)<<endl;
+    return 0;
+}
