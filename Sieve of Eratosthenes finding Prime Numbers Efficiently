@@ -5,22 +5,17 @@ using namespace std;
 void Sieve_of_Eratosthenes_finding_Prime_Numbers(int n){
     vector<bool> ans(n+3,true);
     ans[0] = ans[1] = false;
-    for(int i=2 ; i*i<=n ; i++){
-        if(ans[i] == false)continue;
-        int temp = i;
-        while(temp<=n){
-            temp +=i;
-            ans[temp] = false;
-        }
+    for(int i=2 ; i*i<=n ; i++){     // (neche vala comment pehle padh) // har prime ke square se pehle vale number usse pehle vale prime khatam kar denge 
+        if(ans[i]){                    // 5x2 = 10 ko 2 khatam kr dega | 5x3=15 ko 3 khatam kar dega | 5x4=20 ko 2 khatam kar dega | 5x5=25 ko 5 he khatam karega
+            for(int j=i*i ; j<=n ; j=j+i)ans[j]=false;  //we start from square of that number bec square se pehle vale sare non prime number usse pichle vale
+        }                                                // number khatam kar denge 
     }
-    for(int i=2 ; i<=n ; i++){
-        if(ans[i]==true){cout<<i<<" ";}
+    for(int i=0 ; i<=n ; i++){
+        if(ans[i])cout<<i<<" ";
     }
-    cout<<"hir"<<endl;
 }
 int main(){
     int n; cin>>n;
     Sieve_of_Eratosthenes_finding_Prime_Numbers(n);
-    cout<<"hi"<<endl;
     return 0;
 }
