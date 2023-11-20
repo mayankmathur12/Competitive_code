@@ -1,0 +1,12 @@
+https://www.youtube.com/watch?v=PCitGsjzUc8&list=PLX0iyO9CrCF37xH1TjkmlHs5VMA5MWjme&index=14&ab_channel=HimanshuSingal
+
+question : https://practice.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1?utm_source=geeksforgeeks&utm_medium=article_practice_tab&utm_campaign=article_practice_tab
+
+bool isSubsetSum(vector<int>arr, int sum){
+        bitset<100*100> t;
+        t[0]=1;
+        for(int i=0 ; i<arr.size() ; i++){
+            t = t|(t<<arr[i]);
+        }
+        return t[sum];
+    }
