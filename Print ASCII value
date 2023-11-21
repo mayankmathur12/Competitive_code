@@ -1,0 +1,16 @@
+https://www.youtube.com/watch?v=wQp45Ir63_Y&ab_channel=UnitedTopTech
+
+
+total characters = 126
+but for safet take 130
+
+vector<int> asciiValueArray(130,0);
+
+string s = "12sr4.6q!@"l;
+we have this sting
+
+now to fill the values in the array using the ascii values of the string s, 
+we do 
+for(int i=0 ; i<s.size() ; i++){
+  asciiValueArray[s[i]] += 1;
+}
